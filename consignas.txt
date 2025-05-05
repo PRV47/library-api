@@ -1,0 +1,73 @@
+Parcial Laboratorio IV: API REST para Biblioteca con Node.js, Express y Mongoose
+Objetivo
+Construir una API RESTful utilizando Node.js, Express y Mongoose que permita administrar libros (Book) y autores (Author). La información se almacenará en una base de datos MongoDB.
+
+Requisitos del Proyecto
+1. Estructura del Proyecto
+Organizar el proyecto en carpetas. Ejemplo:
+/library-api
+├── models/
+│   ├── Book.js
+│   └── Author.js
+├── routes/
+│   ├── books.js
+│   └── authors.js
+├── controllers/
+│   ├── bookController.js
+│   └── authorController.js
+├── app.js
+└── .env
+
+2. Coneccion con mongoDB: 
+	URL:
+		mongodb+srv://Root:Root@user.vauaijh.mongodb.net/
+	dbName:
+		“Libros”
+	collections Name:
+libros = “libros”
+autores =”autors”
+
+Modelos (Guía de implementación)
+
+Book
+Representa un libro de la biblioteca.
+Titulo: String, obligatorio.
+Resumen: String, opcional.
+Género: String, obligatorio (ej.: novela, poesía, ensayo).
+Publicacion: Date, obligatorio.
+Disponible: Boolean, indica si el libro está disponible para préstamo, obligatorio.
+
+
+
+Author
+Representa a un autor o autora.
+Nombre: String, obligatorio.
+Bio: String, opcional.
+FechaNacimiento: Date, obligatorio.
+Nacionalidad: String, obligatorio.
+Libros: [ObjectId], lista de libros escritos (referencias a Book).
+
+Endpoints Requeridos
+Books
+GET /books: Obtener todos los libros.
+GET /books/:id: Obtener un libro por ID.
+POST /books: Crear un libro.
+PUT /books/:id: Editar un libro.
+DELETE /books/:id: Eliminar un libro.
+
+
+
+Authors
+GET /authors: Obtener todos los autores.
+GET /authors/:id: Obtener un autor por ID.
+POST /authors: Crear un autor.
+PUT /authors/:id: Editar un autor.
+DELETE /authors/:id: Eliminar un autor.
+PUT /authors/:id/addBook/:bookId: Agregar un libro a la lista del autor.
+otra opción: /authors/addBook?id=:id&bookId=:bookId:
+
+🛡 Validaciones
+✅ No se puede agregar un libro inexistente a un autor.
+✅ No se puede eliminar un libro si está asignado a un autor.
+✅ No se pueden crear libros sin autor ni autores sin nombre.
+
